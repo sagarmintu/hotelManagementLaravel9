@@ -31,6 +31,7 @@
                         <th>Wifi</th>
                         <th>Room Type</th>
                         <th>Image</th>
+                        <th>Action</th>
                     </tr>
 
                     @foreach($rooms as $room)
@@ -43,6 +44,9 @@
                         <td>{{ $room->room_type }}</td>
                         <td>
                             <img src="room/{{ $room->image }}" alt="room images" width="200px" height="200px">
+                        </td>
+                        <td>
+                            <a onclick="return confirm('Are you sure, you want to delete?');" href="{{ url('room_delete',$room->id) }}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                     @endforeach
