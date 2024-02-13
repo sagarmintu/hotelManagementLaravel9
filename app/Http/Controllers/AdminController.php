@@ -60,4 +60,10 @@ class AdminController extends Controller
         $data->save();
         return redirect()->back();
     }
+
+    public function view_room()
+    {
+        $rooms = Room::all();
+        return view('admin.view_room', compact('rooms'));
+    }
 }
