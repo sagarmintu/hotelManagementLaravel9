@@ -61,6 +61,13 @@
                                         {{ session()->get('message') }}
                                     </div>
                                 @endif
+
+                                @if(session()->has('error-message'))
+                                    <div class="alert alert-danger">
+                                        {{ session()->get('error-message') }}
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                         <div class="card-body">
