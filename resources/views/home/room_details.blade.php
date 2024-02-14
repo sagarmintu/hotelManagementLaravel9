@@ -55,6 +55,13 @@
                     <div class="card">
                         <div class="card-header titlepage">
                             <h2>Room Booking</h2>
+                            <div class="mt-1">
+                                @if(session()->has('message'))
+                                    <div class="alert alert-success">
+                                        {{ session()->get('message') }}
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                         <div class="card-body">
                             @if($errors)
@@ -85,7 +92,7 @@
                                     <input type="date" name="end_date" id="end_date" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="submit" class="btn btn-primary text-center" value="Book Room">
+                                    <input type="submit" style="background-color: skyblue;" class="btn btn-primary btn-block" value="Book Room">
                                 </div>
                             </form>
                         </div>
