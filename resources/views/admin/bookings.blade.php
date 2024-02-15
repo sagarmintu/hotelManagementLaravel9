@@ -36,6 +36,7 @@
                         <th>Room Price</th>
                         <th>Room Image</th>
                         <th>Action</th>
+                        <th>Status Update</th>
                     </tr>
 
                     @foreach($bookings as $booking)
@@ -47,7 +48,20 @@
                         <td>{{ $booking->phone }}</td>
                         <td>{{ $booking->start_date }}</td>
                         <td>{{ $booking->end_date }}</td>
-                        <td>{{ $booking->status }}</td>
+                        <td>
+                            @if($booking->status == 'Approved')
+                                <span style="color: green;">Approved</span>
+                            @endif
+
+                            @if($booking->status == 'Rejected')
+                                <span style="color: red;">Rejected</span>
+                            @endif
+
+                            @if($booking->status == 'waiting')
+                                <span style="color: yellow;">waiting</span>
+                            @endif
+
+                        </td>
                         <td>{{ $booking->room->room_title }}</td>
                         <td>{{ $booking->room->price }}</td>
                         <td>
@@ -55,6 +69,10 @@
                         </td>
                         <td>
                             <a onclick="return confirm('Are you sure, you want to delete?');" href="{{ url('delete_booking',$booking->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                        <td>
+                            <a href="{{ url('approve_book',$booking->id) }}" class="btn btn-secondary btn-sm">Approve</a>
+                            <a href="{{ url('reject_book',$booking->id) }}" class="btn btn-warning btn-sm">Reject</a>
                         </td>
                     </tr>
                     @endforeach
