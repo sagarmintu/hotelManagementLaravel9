@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2024 at 08:07 AM
+-- Generation Time: Feb 14, 2024 at 12:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `hotel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `room_id` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `start_date` varchar(255) DEFAULT NULL,
+  `end_date` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `room_id`, `name`, `email`, `phone`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
+(1, '7', 'sagar kumar behera', 'sagarkumar@ralecon.com', '9632587415', '2024-02-14', '2024-02-17', '2024-02-14 04:40:36', '2024-02-14 04:40:36'),
+(2, '8', 'Adil khan', 'adil123@google.com', '9632587419', '2024-02-22', '2024-02-29', '2024-02-14 04:47:32', '2024-02-14 04:47:32'),
+(3, '1', 'swaraj', 'swaraj123@yahoo.com', '9632587418', '2024-02-14', '2024-02-16', '2024-02-14 04:53:33', '2024-02-14 04:53:33'),
+(4, '8', 'Gatikrishna Sahoo', 'gatikrishasahoo123@yahoo.com', '9632587418', '2024-03-01', '2024-03-15', '2024-02-14 05:28:36', '2024-02-14 05:28:36'),
+(5, '8', 'kathiravan  v', 'kathir@ralecon.com', '9632587411', '2024-03-24', '2024-03-29', '2024-02-14 05:31:38', '2024-02-14 05:31:38'),
+(6, '7', 'sagar', 'sagarkumar@ralecon.com', '9632587415', '2024-04-12', '2024-04-30', '2024-02-14 05:33:03', '2024-02-14 05:33:03'),
+(7, '7', 'sagar', 'sagarkumar@ralecon.com', '9632587415', '2024-05-16', '2024-05-25', '2024-02-14 05:59:53', '2024-02-14 05:59:53'),
+(8, '1', 'Sanjeeb Das', 'sanjeebdas123@yahoo.com', '9632587410', '2024-03-01', '2024-03-04', '2024-02-14 06:00:57', '2024-02-14 06:00:57');
 
 -- --------------------------------------------------------
 
@@ -60,7 +92,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_08_19_000000_create_failed_jobs_table', 1),
 (5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (6, '2024_02_13_045854_create_sessions_table', 1),
-(7, '2024_02_13_093305_create_rooms_table', 2);
+(7, '2024_02_13_093305_create_rooms_table', 2),
+(8, '2024_02_14_095606_create_bookings_table', 3);
 
 -- --------------------------------------------------------
 
@@ -139,7 +172,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('c21PsYt4S1LdDZ4llidJ4uOQlAv9s5Mxhfdn6rhK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUlVieGRHVU1kaG1mTTNCb1Z3dHQxMlY5ZW1zMFhxZWx0WmhiSEN6TyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yb29tX2RldGFpbHMvNyI7fX0=', 1707894276);
+('zEavxwp19H4HxGgDnbz02Dqz3v0XxuVa8ARvVhmt', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYWJNUFo4aG5RTk1hQm4zRk9zWXZtcHBXaUZkeVQ0Wkl6WHUwcEE3SyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yb29tX2RldGFpbHMvMSI7fX0=', 1707910258);
 
 -- --------------------------------------------------------
 
@@ -170,13 +203,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `usertype`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'sagar', 'sagarkumar@ralecon.com', '9632587415', 'user', NULL, '$2y$10$LHfAocXrhhguKjkPyZvdd.sPtksHIW2QIjhx1GXtwt27J4aV.pCbK', NULL, NULL, NULL, '4g2pECmd6AVFKC64AGoEVfYy4rHnzUmqS9hFhNl6ocU2Xs9OieDZhwOv8Txx', NULL, NULL, '2024-02-13 00:12:07', '2024-02-13 00:12:07'),
+(1, 'sagar', 'sagarkumar@ralecon.com', '9632587415', 'user', NULL, '$2y$10$LHfAocXrhhguKjkPyZvdd.sPtksHIW2QIjhx1GXtwt27J4aV.pCbK', NULL, NULL, NULL, '5RGSxczFFvo7rkiiwt21qzSxuSsGM2aAnwgXHPf3BxqftmBXMFO6Pa0UDlLr', NULL, NULL, '2024-02-13 00:12:07', '2024-02-13 00:12:07'),
 (2, 'Admin', 'admin@gmail.com', '9632587419', 'admin', NULL, '$2y$10$rO6dBLrHvi5WrQfpPJwSO.JpWDT3pqn9PdTZqE0.euAs5pZSS3UBy', NULL, NULL, NULL, 'jfr4GY7Bqo6pj1zMuzHK2Ppu6c9tfD1UTXPpsi3vPdxiJEv7nd4rJQZygCQl', NULL, NULL, '2024-02-13 00:13:57', '2024-02-13 00:13:57'),
 (3, 'swaraj', 'swaraj123@yahoo.com', '9632587418', 'user', NULL, '$2y$10$rbMTN8FcGSKwolXel3av0.ubJfnrifUuORjwjG8FINRo9h3RpVbPq', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-13 02:02:02', '2024-02-13 02:02:02');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -231,6 +270,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -240,7 +285,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
