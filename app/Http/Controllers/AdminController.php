@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Room;
 use App\Models\Booking;
 use App\Models\Gallery;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -162,5 +163,11 @@ class AdminController extends Controller
         $galleries = Gallery::findOrFail($id);
         $galleries->delete();
         return redirect()->back()->with('message', 'Image Deleted Successfully.');
+    }
+
+    public function all_messages()
+    {
+        $contacts = Contact::all();
+        return view('admin.all_message', compact('contacts'));
     }
 }

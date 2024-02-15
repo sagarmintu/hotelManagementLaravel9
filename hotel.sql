@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2024 at 12:33 PM
+-- Generation Time: Feb 15, 2024 at 08:29 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,6 +33,7 @@ CREATE TABLE `bookings` (
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'waiting',
   `start_date` varchar(255) DEFAULT NULL,
   `end_date` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -43,15 +44,39 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `room_id`, `name`, `email`, `phone`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
-(1, '7', 'sagar kumar behera', 'sagarkumar@ralecon.com', '9632587415', '2024-02-14', '2024-02-17', '2024-02-14 04:40:36', '2024-02-14 04:40:36'),
-(2, '8', 'Adil khan', 'adil123@google.com', '9632587419', '2024-02-22', '2024-02-29', '2024-02-14 04:47:32', '2024-02-14 04:47:32'),
-(3, '1', 'swaraj', 'swaraj123@yahoo.com', '9632587418', '2024-02-14', '2024-02-16', '2024-02-14 04:53:33', '2024-02-14 04:53:33'),
-(4, '8', 'Gatikrishna Sahoo', 'gatikrishasahoo123@yahoo.com', '9632587418', '2024-03-01', '2024-03-15', '2024-02-14 05:28:36', '2024-02-14 05:28:36'),
-(5, '8', 'kathiravan  v', 'kathir@ralecon.com', '9632587411', '2024-03-24', '2024-03-29', '2024-02-14 05:31:38', '2024-02-14 05:31:38'),
-(6, '7', 'sagar', 'sagarkumar@ralecon.com', '9632587415', '2024-04-12', '2024-04-30', '2024-02-14 05:33:03', '2024-02-14 05:33:03'),
-(7, '7', 'sagar', 'sagarkumar@ralecon.com', '9632587415', '2024-05-16', '2024-05-25', '2024-02-14 05:59:53', '2024-02-14 05:59:53'),
-(8, '1', 'Sanjeeb Das', 'sanjeebdas123@yahoo.com', '9632587410', '2024-03-01', '2024-03-04', '2024-02-14 06:00:57', '2024-02-14 06:00:57');
+INSERT INTO `bookings` (`id`, `room_id`, `name`, `email`, `phone`, `status`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
+(1, '7', 'sagar kumar behera', 'sagarkumar@ralecon.com', '9632587415', 'Rejected', '2024-02-14', '2024-02-17', '2024-02-14 04:40:36', '2024-02-15 00:22:55'),
+(3, '1', 'swaraj', 'swaraj123@yahoo.com', '9632587418', 'Approved', '2024-02-14', '2024-02-16', '2024-02-14 04:53:33', '2024-02-15 00:22:52'),
+(4, '8', 'Gatikrishna Sahoo', 'gatikrishasahoo123@yahoo.com', '9632587418', 'waiting', '2024-03-01', '2024-03-15', '2024-02-14 05:28:36', '2024-02-14 05:28:36'),
+(6, '7', 'sagar', 'sagarkumar@ralecon.com', '9632587415', 'waiting', '2024-04-12', '2024-04-30', '2024-02-14 05:33:03', '2024-02-14 05:33:03'),
+(7, '7', 'sagar', 'sagarkumar@ralecon.com', '9632587415', 'Rejected', '2024-05-16', '2024-05-25', '2024-02-14 05:59:53', '2024-02-15 00:18:39'),
+(8, '1', 'Sanjeeb Das', 'sanjeebdas123@yahoo.com', '9632587410', 'Approved', '2024-03-01', '2024-03-04', '2024-02-14 06:00:57', '2024-02-15 00:17:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `message` longtext NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `name`, `email`, `phone`, `message`, `created_at`, `updated_at`) VALUES
+(1, 'sagar kumar behera', 'sagarkumar@ralecon.com', '9632587415', 'test', '2024-02-15 01:51:45', '2024-02-15 01:51:45'),
+(2, 'kathiravan  v', 'kathir@ralecon.com', '9632587419', 'Testing', '2024-02-15 01:52:26', '2024-02-15 01:52:26'),
+(3, 'Sanjeeb Das', 'sanjeebdas123@yahoo.com', '9632587418', 'well done', '2024-02-15 01:53:41', '2024-02-15 01:53:41'),
+(4, 'Gatikrishna Sahoo', 'gatikrishasahoo123@yahoo.com', '9632587412', 'wow', '2024-02-15 01:57:29', '2024-02-15 01:57:29');
 
 -- --------------------------------------------------------
 
@@ -68,6 +93,33 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `galleries`
+--
+
+CREATE TABLE `galleries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `galleries`
+--
+
+INSERT INTO `galleries` (`id`, `image`, `created_at`, `updated_at`) VALUES
+(1, '1707978020.jpg', '2024-02-15 00:50:20', '2024-02-15 00:50:20'),
+(2, '1707978042.jpg', '2024-02-15 00:50:42', '2024-02-15 00:50:42'),
+(3, '1707978046.jpg', '2024-02-15 00:50:46', '2024-02-15 00:50:46'),
+(4, '1707978051.jpg', '2024-02-15 00:50:51', '2024-02-15 00:50:51'),
+(5, '1707978055.jpg', '2024-02-15 00:50:55', '2024-02-15 00:50:55'),
+(6, '1707978059.jpg', '2024-02-15 00:50:59', '2024-02-15 00:50:59'),
+(7, '1707978062.jpg', '2024-02-15 00:51:02', '2024-02-15 00:51:02'),
+(8, '1707978065.jpg', '2024-02-15 00:51:05', '2024-02-15 00:51:05');
 
 -- --------------------------------------------------------
 
@@ -93,7 +145,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (6, '2024_02_13_045854_create_sessions_table', 1),
 (7, '2024_02_13_093305_create_rooms_table', 2),
-(8, '2024_02_14_095606_create_bookings_table', 3);
+(8, '2024_02_14_095606_create_bookings_table', 3),
+(9, '2024_02_15_042344_add_status_field_to_bookings', 4),
+(10, '2024_02_15_044429_add_status_field_to_bookings', 5),
+(11, '2024_02_15_055707_create_galleries_table', 6),
+(12, '2024_02_15_071055_create_contacts_table', 7);
 
 -- --------------------------------------------------------
 
@@ -172,7 +228,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('zEavxwp19H4HxGgDnbz02Dqz3v0XxuVa8ARvVhmt', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYWJNUFo4aG5RTk1hQm4zRk9zWXZtcHBXaUZkeVQ0Wkl6WHUwcEE3SyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yb29tX2RldGFpbHMvMSI7fX0=', 1707910258);
+('FG5mtr9GoSl8EDA7e72IXDeqjPI96GUesKSbn0i4', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoicDJaenJUWExMdjNPNkVXNWlxUmdXZllGNjBjN1pSNW9mN3lwdzF3NSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1707980054),
+('uwxt7l1Qpsrldbi34GBKgcgsQ7RJK4tSCsg6kXRr', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoid2FTWHZ4cjZ3WXhScm1GRjFxU0lMMktMdHdIb2RkSFB4elR0M0ljViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1707980055),
+('Y0WORycXOA1fZMQFxyo1z1dpiOVhUp00DuJ1A8zf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaVJBakhtRTVPRjlGamxsSDJneDZKMWkwNFRQWTcxY04xWWNYajNpYSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1707982057);
 
 -- --------------------------------------------------------
 
@@ -203,8 +261,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `usertype`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'sagar', 'sagarkumar@ralecon.com', '9632587415', 'user', NULL, '$2y$10$LHfAocXrhhguKjkPyZvdd.sPtksHIW2QIjhx1GXtwt27J4aV.pCbK', NULL, NULL, NULL, '5RGSxczFFvo7rkiiwt21qzSxuSsGM2aAnwgXHPf3BxqftmBXMFO6Pa0UDlLr', NULL, NULL, '2024-02-13 00:12:07', '2024-02-13 00:12:07'),
-(2, 'Admin', 'admin@gmail.com', '9632587419', 'admin', NULL, '$2y$10$rO6dBLrHvi5WrQfpPJwSO.JpWDT3pqn9PdTZqE0.euAs5pZSS3UBy', NULL, NULL, NULL, 'jfr4GY7Bqo6pj1zMuzHK2Ppu6c9tfD1UTXPpsi3vPdxiJEv7nd4rJQZygCQl', NULL, NULL, '2024-02-13 00:13:57', '2024-02-13 00:13:57'),
+(1, 'sagar', 'sagarkumar@ralecon.com', '9632587415', 'user', NULL, '$2y$10$LHfAocXrhhguKjkPyZvdd.sPtksHIW2QIjhx1GXtwt27J4aV.pCbK', NULL, NULL, NULL, 'WUvWF6m257YdX2jrwyLlRELm3FkG239rDXgwEBjIO6ixXmtc9YgqTYGUeaA3', NULL, NULL, '2024-02-13 00:12:07', '2024-02-13 00:12:07'),
+(2, 'Admin', 'admin@gmail.com', '9632587419', 'admin', NULL, '$2y$10$rO6dBLrHvi5WrQfpPJwSO.JpWDT3pqn9PdTZqE0.euAs5pZSS3UBy', NULL, NULL, NULL, 'LbUebpVa8AZtUdnLyEHxUOTBPXob3bLpxo9oTMTgisxhC3AnnU0wEziAzjIa', NULL, NULL, '2024-02-13 00:13:57', '2024-02-13 00:13:57'),
 (3, 'swaraj', 'swaraj123@yahoo.com', '9632587418', 'user', NULL, '$2y$10$rbMTN8FcGSKwolXel3av0.ubJfnrifUuORjwjG8FINRo9h3RpVbPq', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-13 02:02:02', '2024-02-13 02:02:02');
 
 --
@@ -218,11 +276,23 @@ ALTER TABLE `bookings`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `galleries`
+--
+ALTER TABLE `galleries`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -276,16 +346,28 @@ ALTER TABLE `bookings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `galleries`
+--
+ALTER TABLE `galleries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
