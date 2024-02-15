@@ -35,7 +35,7 @@
                         <th>Room Title</th>
                         <th>Room Price</th>
                         <th>Room Image</th>
-                        <th colspan="2">Action</th>
+                        <th>Action</th>
                     </tr>
 
                     @foreach($bookings as $booking)
@@ -54,8 +54,7 @@
                             <img src="room/{{ $booking->room->image }}" alt="" height="200px" width="200px">
                         </td>
                         <td>
-                            <a href="" class="btn btn-success btn-sm">Edit</a>
-                            <a onclick="return confirm('Are you sure, you want to delete?');" href="" class="btn btn-danger btn-sm">Delete</a>
+                            <a onclick="return confirm('Are you sure, you want to delete?');" href="{{ url('delete_booking',$booking->id) }}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                     @endforeach

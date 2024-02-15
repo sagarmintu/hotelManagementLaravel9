@@ -110,4 +110,11 @@ class AdminController extends Controller
         $bookings = Booking::all();
         return view('admin.bookings', compact('bookings'));
     }
+
+    public function delete_booking($id)
+    {
+        $bookings = Booking::findOrFail($id);
+        $bookings->delete();
+        return redirect()->back();
+    }
 }
