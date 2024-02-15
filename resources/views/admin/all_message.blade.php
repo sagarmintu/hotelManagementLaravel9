@@ -29,6 +29,7 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Message</th>
+                        <th>Send Email</th>
                     </tr>
 
                     @foreach($contacts as $contact)
@@ -38,6 +39,9 @@
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->phone }}</td>
                         <td>{{ $contact->message }}</td>
+                        <td>
+                            <a href="{{ url('send_mail',$contact->id) }}" class="btn btn-success btn-sm">Send Email</a>
+                        </td>
                     </tr>
                     @endforeach
 

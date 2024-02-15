@@ -39,3 +39,5 @@ Route::get('/delete_image/{id}', [AdminController::class, 'delete_image']);
 Route::post('/contact', [HomeController::class, 'contact']);
 
 Route::get('/all_messages', [AdminController::class, 'all_messages']);
+Route::get('/send_mail/{id}', [AdminController::class, 'send_mail']);
+Route::post('/mail/{id}', [AdminController::class, 'mail']);

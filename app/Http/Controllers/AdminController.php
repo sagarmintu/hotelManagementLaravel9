@@ -9,6 +9,8 @@ use App\Models\Booking;
 use App\Models\Gallery;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\SendMailtNotification;
+use Notification;
 
 class AdminController extends Controller
 {
@@ -169,5 +171,26 @@ class AdminController extends Controller
     {
         $contacts = Contact::all();
         return view('admin.all_message', compact('contacts'));
+    }
+
+    public function send_mail($id)
+    {
+       $contacts = Contact::findOrFail($id);
+       return view('admin.send_mail', compact('contacts'));
+    }
+
+    public function mail(Request $request,$id)
+    {
+        $contacts = Contact::findOrFail($id);
+        $details = [
+            'greeting' => $request->greeting,
+            'body' => $request->body,
+            'action_text' => $request->action_text,
+            'action_url' => $request->action_url,
+            'endline' => $request->endline
+        ];
+
+        Notification::send($contacts, new SendMailtNotification($details));
+        return redirect()->back();
     }
 }
