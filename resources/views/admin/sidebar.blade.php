@@ -20,5 +20,6 @@
                 </ul>
             </li>
             <li><a href="{{ url('bookings') }}"><i class="icon-windows"></i> Bookings</a></li>
+            <li><a href="{{ url('view_gallery') }}"><i class="icon-windows"></i> Gallery</a></li>
         </ul>
     </nav>
