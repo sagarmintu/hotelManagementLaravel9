@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Booking;
+use App\Models\Contact;
 
 class HomeController extends Controller
 {
@@ -47,5 +48,16 @@ class HomeController extends Controller
             $data->save();
             return redirect()->back()->with('message', 'Room Booked Successfully !!!');
         }
+    }
+
+    public function contact(Request $request)
+    {
+        $data = new Contact;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->message = $request->message;
+        $data->save();
+        return redirect()->back()->with('message', 'Thank You. You will be get back to you soon !!!');
     }
 }

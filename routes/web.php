@@ -35,3 +35,5 @@ Route::get('/reject_book/{id}', [AdminController::class, 'reject_book']);
 Route::get('/view_gallery', [AdminController::class, 'view_gallery']);
 Route::post('/upload_gallery', [AdminController::class, 'upload_gallery']);
 Route::get('/delete_image/{id}', [AdminController::class, 'delete_image']);
+
+Route::post('/contact', [HomeController::class, 'contact']);
