@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2024 at 08:29 AM
+-- Generation Time: Feb 15, 2024 at 12:27 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -73,7 +73,7 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `name`, `email`, `phone`, `message`, `created_at`, `updated_at`) VALUES
-(1, 'sagar kumar behera', 'sagarkumar@ralecon.com', '9632587415', 'test', '2024-02-15 01:51:45', '2024-02-15 01:51:45'),
+(1, 'sagar kumar behera', 'sagarskbehera1996@gmail.com', '9632587415', 'test', '2024-02-15 01:51:45', '2024-02-15 01:51:45'),
 (2, 'kathiravan  v', 'kathir@ralecon.com', '9632587419', 'Testing', '2024-02-15 01:52:26', '2024-02-15 01:52:26'),
 (3, 'Sanjeeb Das', 'sanjeebdas123@yahoo.com', '9632587418', 'well done', '2024-02-15 01:53:41', '2024-02-15 01:53:41'),
 (4, 'Gatikrishna Sahoo', 'gatikrishasahoo123@yahoo.com', '9632587412', 'wow', '2024-02-15 01:57:29', '2024-02-15 01:57:29');
@@ -149,7 +149,26 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2024_02_15_042344_add_status_field_to_bookings', 4),
 (10, '2024_02_15_044429_add_status_field_to_bookings', 5),
 (11, '2024_02_15_055707_create_galleries_table', 6),
-(12, '2024_02_15_071055_create_contacts_table', 7);
+(12, '2024_02_15_071055_create_contacts_table', 7),
+(13, '2024_02_15_093324_create_notifications_table', 8),
+(14, '2024_02_15_111029_create_sliders_table', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` char(36) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `notifiable_type` varchar(255) NOT NULL,
+  `notifiable_id` bigint(20) UNSIGNED NOT NULL,
+  `data` text NOT NULL,
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -228,9 +247,29 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('FG5mtr9GoSl8EDA7e72IXDeqjPI96GUesKSbn0i4', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoicDJaenJUWExMdjNPNkVXNWlxUmdXZllGNjBjN1pSNW9mN3lwdzF3NSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1707980054),
-('uwxt7l1Qpsrldbi34GBKgcgsQ7RJK4tSCsg6kXRr', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoid2FTWHZ4cjZ3WXhScm1GRjFxU0lMMktMdHdIb2RkSFB4elR0M0ljViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1707980055),
-('Y0WORycXOA1fZMQFxyo1z1dpiOVhUp00DuJ1A8zf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaVJBakhtRTVPRjlGamxsSDJneDZKMWkwNFRQWTcxY04xWWNYajNpYSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1707982057);
+('92NyJbQjn9F41MO1I49lt10JZQespTqiwOztmMYp', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWDY4Y291cjl6NlVRcmY4VGZYb29wVlN6NnJDV05BRXZHRkpZbXo4cCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC92aWV3X3NsaWRlciI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1707996448);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sliders`
+--
+
+CREATE TABLE `sliders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sliders`
+--
+
+INSERT INTO `sliders` (`id`, `image`, `created_at`, `updated_at`) VALUES
+(1, '1707996431.jpg', '2024-02-15 05:57:11', '2024-02-15 05:57:11'),
+(2, '1707996436.jpg', '2024-02-15 05:57:16', '2024-02-15 05:57:16'),
+(3, '1707996440.jpg', '2024-02-15 05:57:20', '2024-02-15 05:57:20');
 
 -- --------------------------------------------------------
 
@@ -261,8 +300,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `usertype`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'sagar', 'sagarkumar@ralecon.com', '9632587415', 'user', NULL, '$2y$10$LHfAocXrhhguKjkPyZvdd.sPtksHIW2QIjhx1GXtwt27J4aV.pCbK', NULL, NULL, NULL, 'WUvWF6m257YdX2jrwyLlRELm3FkG239rDXgwEBjIO6ixXmtc9YgqTYGUeaA3', NULL, NULL, '2024-02-13 00:12:07', '2024-02-13 00:12:07'),
-(2, 'Admin', 'admin@gmail.com', '9632587419', 'admin', NULL, '$2y$10$rO6dBLrHvi5WrQfpPJwSO.JpWDT3pqn9PdTZqE0.euAs5pZSS3UBy', NULL, NULL, NULL, 'LbUebpVa8AZtUdnLyEHxUOTBPXob3bLpxo9oTMTgisxhC3AnnU0wEziAzjIa', NULL, NULL, '2024-02-13 00:13:57', '2024-02-13 00:13:57'),
+(1, 'sagar', 'sagarkumar@ralecon.com', '9632587415', 'user', NULL, '$2y$10$LHfAocXrhhguKjkPyZvdd.sPtksHIW2QIjhx1GXtwt27J4aV.pCbK', NULL, NULL, NULL, 'iDzEQSo43Um2mNYnCOUIm6vnuMyzb4agpVx3ZuGqpKQOdXCZVbN1wXF2BYVd', NULL, NULL, '2024-02-13 00:12:07', '2024-02-13 00:12:07'),
+(2, 'Admin', 'admin@gmail.com', '9632587419', 'admin', NULL, '$2y$10$rO6dBLrHvi5WrQfpPJwSO.JpWDT3pqn9PdTZqE0.euAs5pZSS3UBy', NULL, NULL, NULL, '205uX5EJaNe5HY6z4FSFXA4p2n1d34l4MWuF0gwR2j5XxoLmvxfYAR9u6obn', NULL, NULL, '2024-02-13 00:13:57', '2024-02-13 00:13:57'),
 (3, 'swaraj', 'swaraj123@yahoo.com', '9632587418', 'user', NULL, '$2y$10$rbMTN8FcGSKwolXel3av0.ubJfnrifUuORjwjG8FINRo9h3RpVbPq', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-13 02:02:02', '2024-02-13 02:02:02');
 
 --
@@ -301,6 +340,13 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notifications_notifiable_type_notifiable_id_index` (`notifiable_type`,`notifiable_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -327,6 +373,12 @@ ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -367,7 +419,7 @@ ALTER TABLE `galleries`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -380,6 +432,12 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `rooms`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -22,5 +22,6 @@
             <li><a href="{{ url('bookings') }}"><i class="icon-windows"></i> Bookings</a></li>
             <li><a href="{{ url('view_gallery') }}"><i class="icon-windows"></i> Gallery</a></li>
             <li><a href="{{ url('all_messages') }}"><i class="icon-windows"></i> Messages</a></li>
+            <li><a href="{{ url('view_slider') }}"><i class="icon-windows"></i> Slider</a></li>
         </ul>
     </nav>

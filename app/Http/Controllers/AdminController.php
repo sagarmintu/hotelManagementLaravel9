@@ -8,6 +8,7 @@ use App\Models\Room;
 use App\Models\Booking;
 use App\Models\Gallery;
 use App\Models\Contact;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\SendMailtNotification;
 use Notification;
@@ -192,5 +193,32 @@ class AdminController extends Controller
 
         Notification::send($contacts, new SendMailtNotification($details));
         return redirect()->back();
+    }
+
+    public function view_slider()
+    {
+        $sliders = Slider::all();
+        return view('admin.view_slider', compact('sliders'));
+    }
+
+    public function upload_slider(Request $request)
+    {
+        $sliders = new Slider;
+        $image = $request->image;
+        if($image)
+        {
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $request->image->move('slider',$imageName);
+            $sliders->image = $imageName;
+            $sliders->save();
+            return redirect()->back()->with('message','Image Uploaded Successfully');
+        }
+    }
+
+    public function delete_slider_image($id)
+    {
+        $sliders = Slider::findOrFail($id);
+        $sliders->delete();
+        return redirect()->back()->with('message', 'Image Deleted Successfully.');
     }
 }
